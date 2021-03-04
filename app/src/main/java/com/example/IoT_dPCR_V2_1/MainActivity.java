@@ -2,6 +2,7 @@ package com.example.IoT_dPCR_V2_1;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,12 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-//import android.os.SystemClock;
-//import android.os.Handler;
+import android.os.SystemClock;
+import android.os.Handler;
 
-//import java.io.InputStream;
-//import java.io.OutputStream;
-//import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.IOException;
 
 import app.akexorcist.bluetotohspp.library.BluetoothSPP;
 import app.akexorcist.bluetotohspp.library.BluetoothState;
@@ -64,7 +65,13 @@ public class MainActivity extends AppCompatActivity {
     TextView mCon9;
 
 //    Handler mBluetoothHandler;
+//    ConnectedBluetoothThread mThreadConnectedBluetooth;
+//    BluetoothDevice mBluetoothDevice;
+//    BluetoothSocket mBluetoothSocket;
+//
+//    final static int BT_REQUEST_ENABLE = 1;
 //    final static int BT_MESSAGE_READ = 2;
+//    final static int BT_CONNECTING_STATUS = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //Socket interface
+//    //Socket interface
 //    private class ConnectedBluetoothThread extends Thread{
 //        private final BluetoothSocket mmSocket;
 //        private final InputStream mmInStream;
