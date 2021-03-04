@@ -1,6 +1,6 @@
 # IoT-DigitalPCR
 
-IoT-Digital application developed by Ji Wook Choi.
+IoT-Digital PCR application developed by Ji Wook Choi.
 
 Android application (.apk) is available.
 
