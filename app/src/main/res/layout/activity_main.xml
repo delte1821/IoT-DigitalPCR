@@ -79,7 +79,10 @@
             android:text="Temperature 1"
             android:textSize="14dp"
             android:textAlignment="center"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:contextClickable="true"
+            android:textIsSelectable="true"
+            android:focusable="true" />
 
         <EditText
             android:id="@+id/Time1"

@@ -187,6 +187,12 @@ public class MainActivity extends AppCompatActivity {
         mCon8 = findViewById(R.id.Con8);
         mCon9 = findViewById(R.id.Con9);
 
+        mTemp1.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                mTemp1.selectAll();
+            }
+        });
+
         //TC button click
         mbtnTC.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
