@@ -78,7 +78,8 @@
             android:inputType="number"
             android:text="Temperature 1"
             android:textSize="14dp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:clickable="true"/>
 
         <EditText
             android:id="@+id/Time1"

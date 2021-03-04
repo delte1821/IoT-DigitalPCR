@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     EditText mNcyc;
     Button mbtnTC;
 
+
     //Fluimaging(FI) parameters
     EditText mISO;
     EditText mExpTime;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     TextView mCon8;
     TextView mCon9;
 
-//    Handler mBluetoothHandler;
+    Handler mBluetoothHandler;
 //    ConnectedBluetoothThread mThreadConnectedBluetooth;
 //    BluetoothDevice mBluetoothDevice;
 //    BluetoothSocket mBluetoothSocket;
@@ -212,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
                         + "_" + mDetparm2.getText().toString() + "_" + mMinrad.getText().toString()
                         + "_" + mMaxrad.getText().toString() + "_" + mMindist.getText().toString() + "_", true);
             }
+
         });
     }
 
