@@ -46,13 +46,13 @@ Step 3) Digital PCR activation via "Start" button
     
   iii) Digital PCR analysis
   
-  * Parameters * 
-  
-  Detection parameter 1 / 2 = Houghcircle parameter
-  
-  Minimum / Maximum radius (px)
-  
-  Minimum distance (px)
+    * Parameters * 
+
+    Detection parameter 1 / 2 = Houghcircle parameter
+
+    Minimum / Maximum radius (px)
+
+    Minimum distance (px)
   
 Step 4) Receive data (.db file) from Digital PCR device
 
