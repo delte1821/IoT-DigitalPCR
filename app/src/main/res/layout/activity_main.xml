@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|italic"
+        android:background="#BF360C"
+        android:text="  Digital PCR Application"
+        android:textAlignment="viewStart"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold|italic"
+        android:background="#BF360C"
+        android:text="Sogang University  "
+        android:textAlignment="textEnd"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnConnect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#673AB7"
+        android:layout_marginTop="4dp"
+        android:text="Bluetooth connection"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.098" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="THERMAL CYCLING"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:background="#66B71C1C"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33B71C1C"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/Temp1"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:inputType="number"
+            android:text="Temperature 1"
+            android:textSize="14dp"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/Time1"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:inputType="number"
+            android:text="Time 1"
+            android:textSize="14dp"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33B71C1C"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/Temp2"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:inputType="number"
+            android:text="Temperature 2"
+            android:textSize="14dp"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/Time2"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Time 2"
+            android:inputType="number"
+            android:textSize="14dp"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33B71C1C"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/Temp3"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Temperature 3"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+
+        <EditText
+            android:id="@+id/Time3"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Time 3"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33B71C1C"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/Ncyc"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Number of cycles"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+        <Button
+            android:id="@+id/btnThermalcycling"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#B71C1C"
+            android:text="Start"
+            android:textSize="14dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="FLUORESCENCE IMAGING"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:background="#661A237E"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#331A237E"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ISO"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:inputType="number"
+            android:text="ISO"
+            android:textSize="14dp"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/ExpTime"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Exposure time"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#331A237E"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/ShuTime"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Shutter speed"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+        <EditText
+            android:id="@+id/LivTime"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Live time"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#331A237E"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/Flu"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Fluorescence"
+            android:textSize="14dp"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+        <Button
+            android:id="@+id/btnFluimaing"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#1A237E"
+            android:text="Capture"
+            android:textSize="14dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="DATA ANALYSIS"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:background="#661B5E20"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#331B5E20"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/Detparm1"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:inputType="number"
+            android:text="Detection parameter 1"
+            android:textSize="14dp"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/Detparm2"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Detection parameter 2"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#331B5E20"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/Minrad"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Minimum radius"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+        <EditText
+            android:id="@+id/Maxrad"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Maximum radius"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#331B5E20"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/Mindist"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Minimum distance"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+        <Button
+            android:id="@+id/btnAnalysis"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#1B5E20"
+            android:text="ANALYSIS"
+            android:textSize="14dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Target concentration (copies/uL)"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="16dp"
+        android:layout_marginTop="6dp"
+        android:textAlignment="center"
+        android:background="#66000000"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33000000"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/TexCon1"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:text="(A)"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/Con1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="924.85"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/TexCon2"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:text="(B)"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/Con2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="916.81"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/TexCon3"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:text="(C)"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/Con3"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="975.97"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33000000"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/TexCon4"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:text="(D)"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/Con4"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="1054.83"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/TexCon5"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:text="(E)"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/Con5"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="1069.05"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/TexCon6"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:text="(F)"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/Con6"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="916.51"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33000000"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/TexCon7"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:text="(G)"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/Con7"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="1006.29"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/TexCon8"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:text="(H)"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/Con8"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="1027.88"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/TexCon9"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:text="(I)"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/Con9"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="1028.21"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33006064"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/Fname"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="DATA ID"
+            android:textSize="14dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:layout_marginStart="4dp"
+            />
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#006064"
+            android:text="Send data"
+            android:textSize="14dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

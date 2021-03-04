@@ -1,0 +1,286 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.IoT_dPCR_V2_1;
+
+<span class="s0">import </span>android.app.Activity;
+<span class="s0">import </span>android.bluetooth.BluetoothAdapter;
+<span class="s0">import </span>android.bluetooth.BluetoothSocket;
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.support.v7.app.AppCompatActivity;
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.widget.Button;
+<span class="s0">import </span>android.widget.EditText;
+<span class="s0">import </span>android.widget.TextView;
+<span class="s0">import </span>android.widget.Toast;
+<span class="s2">//import android.os.SystemClock;</span>
+<span class="s2">//import android.os.Handler;</span>
+
+<span class="s2">//import java.io.InputStream;</span>
+<span class="s2">//import java.io.OutputStream;</span>
+<span class="s2">//import java.io.IOException;</span>
+
+<span class="s0">import </span>app.akexorcist.bluetotohspp.library.BluetoothSPP;
+<span class="s0">import </span>app.akexorcist.bluetotohspp.library.BluetoothState;
+<span class="s0">import </span>app.akexorcist.bluetotohspp.library.DeviceList;
+
+<span class="s0">public class </span>MainActivity <span class="s0">extends </span>AppCompatActivity {
+
+    <span class="s0">private </span>BluetoothSPP bt;
+
+    <span class="s2">//Thermocycling (TC) parameters</span>
+    EditText mTemp1;
+    EditText mTemp2;
+    EditText mTemp3;
+    EditText mTime1;
+    EditText mTime2;
+    EditText mTime3;
+    EditText mNcyc;
+    Button mbtnTC;
+
+    <span class="s2">//Fluimaging(FI) parameters</span>
+    EditText mISO;
+    EditText mExpTime;
+    EditText mShuTime;
+    EditText mLivtime;
+    EditText mFlu;
+    Button mbtnFI;
+
+    <span class="s2">//Analysis(AN) parameters</span>
+    EditText mDetparm1;
+    EditText mDetparm2;
+    EditText mMinrad;
+    EditText mMaxrad;
+    EditText mMindist;
+    Button mbtnAN;
+
+    <span class="s2">//Target concentration</span>
+    TextView mCon1;
+    TextView mCon2;
+    TextView mCon3;
+    TextView mCon4;
+    TextView mCon5;
+    TextView mCon6;
+    TextView mCon7;
+    TextView mCon8;
+    TextView mCon9;
+
+<span class="s2">//    Handler mBluetoothHandler;</span>
+<span class="s2">//    final static int BT_MESSAGE_READ = 2;</span>
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        bt = <span class="s0">new </span>BluetoothSPP(<span class="s0">this</span>); <span class="s2">//Initializing</span>
+
+        <span class="s0">if </span>(!bt.isBluetoothAvailable()) { <span class="s2">//Unable to connect bluetooth</span>
+            Toast.makeText(getApplicationContext()
+                    , <span class="s3">&quot;Bluetooth is not available&quot;</span>
+                    , Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+        bt.setOnDataReceivedListener(<span class="s0">new </span>BluetoothSPP.OnDataReceivedListener() { <span class="s2">//Collecting data</span>
+            <span class="s0">public void </span>onDataReceived(<span class="s0">byte</span>[] data, String message) {
+                Toast.makeText(MainActivity.<span class="s0">this</span>, message, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        bt.setBluetoothConnectionListener(<span class="s0">new </span>BluetoothSPP.BluetoothConnectionListener() { <span class="s2">//Connected to device</span>
+            <span class="s0">public void </span>onDeviceConnected(String name, String address) {
+                Toast.makeText(getApplicationContext()
+                        , <span class="s3">&quot;Connected to &quot; </span>+ name + <span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot; </span>+ address
+                        , Toast.LENGTH_SHORT).show();
+            }
+
+            <span class="s0">public void </span>onDeviceDisconnected() { <span class="s2">//Unpairing device</span>
+                Toast.makeText(getApplicationContext()
+                        , <span class="s3">&quot;Connection lost&quot;</span>, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            <span class="s0">public void </span>onDeviceConnectionFailed() {
+
+            }
+
+            <span class="s0">public void </span>onDeviceCo00nnectionFailed() { <span class="s2">//Fail to connect</span>
+                Toast.makeText(getApplicationContext()
+                        , <span class="s3">&quot;Unable to connect&quot;</span>, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button btnConnect = findViewById(R.id.btnConnect); <span class="s2">//Attempting to connect</span>
+        btnConnect.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            <span class="s0">public void </span>onClick(View v) {
+                <span class="s0">if </span>(bt.getServiceState() == BluetoothState.STATE_CONNECTED) {
+                    bt.disconnect();
+                } <span class="s0">else </span>{
+                    Intent intent = <span class="s0">new </span>Intent(getApplicationContext(), DeviceList.<span class="s0">class</span>);
+                    startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE);
+                }
+            }
+        });
+    }
+
+    <span class="s0">public void </span>onDestroy() {
+        <span class="s0">super</span>.onDestroy();
+        bt.stopService(); <span class="s2">//Stop bluetooth</span>
+    }
+
+    <span class="s0">public void </span>onStart() {
+        <span class="s0">super</span>.onStart();
+        <span class="s0">if </span>(!bt.isBluetoothEnabled()) { <span class="s2">//</span>
+            Intent intent = <span class="s0">new </span>Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(intent, BluetoothState.REQUEST_ENABLE_BT);
+        } <span class="s0">else </span>{
+            <span class="s0">if </span>(!bt.isServiceAvailable()) {
+                bt.setupService();
+                bt.startService(BluetoothState.DEVICE_OTHER); <span class="s2">//DEVICE_ANDROID</span>
+                setup();
+            }
+        }
+    }
+
+    <span class="s2">//Button Activity</span>
+    <span class="s0">public void </span>setup() {
+        <span class="s2">//TC ID</span>
+        mbtnTC = findViewById(R.id.btnThermalcycling);
+        mTemp1  = findViewById(R.id.Temp1);
+        mTemp2  = findViewById(R.id.Temp2);
+        mTemp3  = findViewById(R.id.Temp3);
+        mTime1  = findViewById(R.id.Time1);
+        mTime2  = findViewById(R.id.Time2);
+        mTime3  = findViewById(R.id.Time3);
+        mNcyc = findViewById(R.id.Ncyc);
+
+        <span class="s2">//FI ID</span>
+        mbtnFI    = findViewById(R.id.btnFluimaing);
+        mISO      = findViewById(R.id.ISO);
+        mExpTime  = findViewById(R.id.ExpTime);
+        mShuTime  = findViewById(R.id.ShuTime);
+        mLivtime  = findViewById(R.id.LivTime);
+        mFlu      = findViewById(R.id.Flu);
+
+        <span class="s2">//AN ID</span>
+        mbtnAN     = findViewById(R.id.btnAnalysis);
+        mDetparm1  = findViewById(R.id.Detparm1);
+        mDetparm2  = findViewById(R.id.Detparm2);
+        mMinrad    = findViewById(R.id.Minrad);
+        mMaxrad    = findViewById(R.id.Maxrad);
+        mMindist   = findViewById(R.id.Mindist);
+
+        <span class="s2">//Data ID</span>
+        mCon1 = findViewById(R.id.Con1);
+        mCon2 = findViewById(R.id.Con2);
+        mCon3 = findViewById(R.id.Con3);
+        mCon4 = findViewById(R.id.Con4);
+        mCon5 = findViewById(R.id.Con5);
+        mCon6 = findViewById(R.id.Con6);
+        mCon7 = findViewById(R.id.Con7);
+        mCon8 = findViewById(R.id.Con8);
+        mCon9 = findViewById(R.id.Con9);
+
+        <span class="s2">//TC button click</span>
+        mbtnTC.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            <span class="s0">public void </span>onClick(View v) {
+                bt.send(<span class="s3">&quot;TC&quot; </span>+ mTemp1.getText().toString()
+                        + <span class="s3">&quot;_&quot; </span>+ mTemp2.getText().toString() + <span class="s3">&quot;_&quot; </span>+ mTemp3.getText().toString()
+                        + <span class="s3">&quot;_&quot; </span>+ mTime1.getText().toString() + <span class="s3">&quot;_&quot; </span>+ mTime2.getText().toString()
+                        + <span class="s3">&quot;_&quot; </span>+ mTime3.getText().toString() + <span class="s3">&quot;_&quot; </span>+ mNcyc.getText().toString() + <span class="s3">&quot;_&quot;</span>, <span class="s0">true</span>);
+                            }
+        });
+
+        <span class="s2">//FI button click</span>
+        mbtnFI.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            <span class="s0">public void </span>onClick(View v) {
+                bt.send(<span class="s3">&quot;FI&quot; </span>+ mISO.getText().toString()
+                        + <span class="s3">&quot;_&quot; </span>+ mExpTime.getText().toString() + <span class="s3">&quot;_&quot; </span>+ mShuTime.getText().toString()
+                        + <span class="s3">&quot;_&quot; </span>+ mLivtime.getText().toString() + <span class="s3">&quot;_&quot; </span>+ mFlu.getText().toString() + <span class="s3">&quot;_&quot;</span>, <span class="s0">true</span>);
+            }
+        });
+
+        <span class="s2">//AN button click</span>
+        mbtnAN.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            <span class="s0">public void </span>onClick(View v) {
+                bt.send(<span class="s3">&quot;AN&quot; </span>+ mDetparm1.getText().toString()
+                        + <span class="s3">&quot;_&quot; </span>+ mDetparm2.getText().toString() + <span class="s3">&quot;_&quot; </span>+ mMinrad.getText().toString()
+                        + <span class="s3">&quot;_&quot; </span>+ mMaxrad.getText().toString() + <span class="s3">&quot;_&quot; </span>+ mMindist.getText().toString() + <span class="s3">&quot;_&quot;</span>, <span class="s0">true</span>);
+            }
+        });
+    }
+
+    <span class="s2">//Socket interface</span>
+<span class="s2">//    private class ConnectedBluetoothThread extends Thread{</span>
+<span class="s2">//        private final BluetoothSocket mmSocket;</span>
+<span class="s2">//        private final InputStream mmInStream;</span>
+<span class="s2">//        private final OutputStream mmOutStream;</span>
+<span class="s2">//</span>
+<span class="s2">//        public ConnectedBluetoothThread(BluetoothSocket socket) {</span>
+<span class="s2">//            mmSocket = socket;</span>
+<span class="s2">//            InputStream tmpIn = null;</span>
+<span class="s2">//            OutputStream tmpOut = null;</span>
+<span class="s2">//</span>
+<span class="s2">//            try {</span>
+<span class="s2">//                tmpIn = socket.getInputStream();</span>
+<span class="s2">//                tmpOut = socket.getOutputStream();</span>
+<span class="s2">//            } catch (IOException e) {</span>
+<span class="s2">//                Toast.makeText(getApplicationContext(), &quot;Failed to connect Socket&quot;, Toast.LENGTH_LONG).show();</span>
+<span class="s2">//            }</span>
+<span class="s2">//            mmInStream = tmpIn;</span>
+<span class="s2">//            mmOutStream = tmpOut;</span>
+<span class="s2">//        }</span>
+<span class="s2">//        public void run() {</span>
+<span class="s2">//            byte[] buffer = new byte[1024];</span>
+<span class="s2">//            int bytes;</span>
+<span class="s2">//</span>
+<span class="s2">//            while (true) {</span>
+<span class="s2">//                try {</span>
+<span class="s2">//                    bytes = mmInStream.available();</span>
+<span class="s2">//                    if (bytes != 0) {</span>
+<span class="s2">//                        SystemClock.sleep(100);</span>
+<span class="s2">//                        bytes = mmInStream.available();</span>
+<span class="s2">//                        bytes = mmInStream.read(buffer, 0, bytes);</span>
+<span class="s2">//                        mBluetoothHandler.obtainMessage(BT_MESSAGE_READ, bytes, -1, buffer).sendToTarget();</span>
+<span class="s2">//                    }</span>
+<span class="s2">//                } catch (IOException e) {</span>
+<span class="s2">//                    break;</span>
+<span class="s2">//                }</span>
+<span class="s2">//            }</span>
+<span class="s2">//    }</span>
+    <span class="s0">public void </span>onActivityResult(<span class="s0">int </span>requestCode, <span class="s0">int </span>resultCode, Intent data) {
+        <span class="s0">if </span>(requestCode == BluetoothState.REQUEST_CONNECT_DEVICE) {
+            <span class="s0">if </span>(resultCode == Activity.RESULT_OK)
+                bt.connect(data);
+        } <span class="s0">else if </span>(requestCode == BluetoothState.REQUEST_ENABLE_BT) {
+            <span class="s0">if </span>(resultCode == Activity.RESULT_OK) {
+                bt.setupService();
+                bt.startService(BluetoothState.DEVICE_OTHER);
+                setup();
+            } <span class="s0">else </span>{
+                Toast.makeText(getApplicationContext()
+                        , <span class="s3">&quot;Bluetooth was not enabled.&quot;</span>
+                        , Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+}
+</pre>
+</body>
+</html>
