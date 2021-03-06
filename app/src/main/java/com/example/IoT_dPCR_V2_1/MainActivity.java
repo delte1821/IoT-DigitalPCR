@@ -1,10 +1,18 @@
 package com.example.IoT_dPCR_V2_1;
 
+import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -65,7 +73,13 @@ public class MainActivity extends AppCompatActivity {
     TextView mCon8;
     TextView mCon9;
 
+    //Send data to server
+    EditText mDataid;
+    Button mbtnSE;
+
+
     Handler mBluetoothHandler;
+
 //    ConnectedBluetoothThread mThreadConnectedBluetooth;
 //    BluetoothDevice mBluetoothDevice;
 //    BluetoothSocket mBluetoothSocket;
@@ -152,29 +166,29 @@ public class MainActivity extends AppCompatActivity {
     public void setup() {
         //TC ID
         mbtnTC = findViewById(R.id.btnThermalcycling);
-        mTemp1  = findViewById(R.id.Temp1);
-        mTemp2  = findViewById(R.id.Temp2);
-        mTemp3  = findViewById(R.id.Temp3);
-        mTime1  = findViewById(R.id.Time1);
-        mTime2  = findViewById(R.id.Time2);
-        mTime3  = findViewById(R.id.Time3);
+        mTemp1 = findViewById(R.id.Temp1);
+        mTemp2 = findViewById(R.id.Temp2);
+        mTemp3 = findViewById(R.id.Temp3);
+        mTime1 = findViewById(R.id.Time1);
+        mTime2 = findViewById(R.id.Time2);
+        mTime3 = findViewById(R.id.Time3);
         mNcyc = findViewById(R.id.Ncyc);
 
         //FI ID
-        mbtnFI    = findViewById(R.id.btnFluimaing);
-        mISO      = findViewById(R.id.ISO);
-        mExpTime  = findViewById(R.id.ExpTime);
-        mShuTime  = findViewById(R.id.ShuTime);
-        mLivtime  = findViewById(R.id.LivTime);
-        mFlu      = findViewById(R.id.Flu);
+        mbtnFI = findViewById(R.id.btnFluimaing);
+        mISO = findViewById(R.id.ISO);
+        mExpTime = findViewById(R.id.ExpTime);
+        mShuTime = findViewById(R.id.ShuTime);
+        mLivtime = findViewById(R.id.LivTime);
+        mFlu = findViewById(R.id.Flu);
 
         //AN ID
-        mbtnAN     = findViewById(R.id.btnAnalysis);
-        mDetparm1  = findViewById(R.id.Detparm1);
-        mDetparm2  = findViewById(R.id.Detparm2);
-        mMinrad    = findViewById(R.id.Minrad);
-        mMaxrad    = findViewById(R.id.Maxrad);
-        mMindist   = findViewById(R.id.Mindist);
+        mbtnAN = findViewById(R.id.btnAnalysis);
+        mDetparm1 = findViewById(R.id.Detparm1);
+        mDetparm2 = findViewById(R.id.Detparm2);
+        mMinrad = findViewById(R.id.Minrad);
+        mMaxrad = findViewById(R.id.Maxrad);
+        mMindist = findViewById(R.id.Mindist);
 
         //Data ID
         mCon1 = findViewById(R.id.Con1);
@@ -187,26 +201,24 @@ public class MainActivity extends AppCompatActivity {
         mCon8 = findViewById(R.id.Con8);
         mCon9 = findViewById(R.id.Con9);
 
-        mTemp1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v) {
-                mTemp1.selectAll();
-            }
-        });
+        //Send data ID
+        mDataid = findViewById(R.id.Dataid);
+        mbtnSE = findViewById(R.id.btnSend);
 
         //TC button click
         mbtnTC.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                bt.send("TC" + mTemp1.getText().toString()
+                bt.send("TC" + "_" + mTemp1.getText().toString()
                         + "_" + mTemp2.getText().toString() + "_" + mTemp3.getText().toString()
                         + "_" + mTime1.getText().toString() + "_" + mTime2.getText().toString()
                         + "_" + mTime3.getText().toString() + "_" + mNcyc.getText().toString() + "_", true);
-                            }
+            }
         });
 
         //FI button click
         mbtnFI.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                bt.send("FI" + mISO.getText().toString()
+                bt.send("FI" + "_" + mISO.getText().toString()
                         + "_" + mExpTime.getText().toString() + "_" + mShuTime.getText().toString()
                         + "_" + mLivtime.getText().toString() + "_" + mFlu.getText().toString() + "_", true);
             }
@@ -215,11 +227,29 @@ public class MainActivity extends AppCompatActivity {
         //AN button click
         mbtnAN.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                bt.send("AN" + mDetparm1.getText().toString()
+
+                bt.send("AN" + "_" + mDetparm1.getText().toString()
                         + "_" + mDetparm2.getText().toString() + "_" + mMinrad.getText().toString()
                         + "_" + mMaxrad.getText().toString() + "_" + mMindist.getText().toString() + "_", true);
             }
-
+        });
+        mbtnSE.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                if ( Build.VERSION.SDK_INT >= 23 &&
+                        ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
+                    ActivityCompat.requestPermissions( MainActivity.this, new String[] {  android.Manifest.permission.ACCESS_FINE_LOCATION  },
+                            0 );
+                }
+                else{
+                    Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    String provider = location.getProvider();
+                    double longitude = location.getLongitude();
+                    double latitude = location.getLatitude();
+                    double altitude = location.getAltitude();
+                    bt.send("ID" + "_" + mDataid.getText().toString() + "_" + provider + "_" + longitude + "_: " + latitude + "_: " + altitude + "_", true);
+                }
+            }
         });
     }
 
