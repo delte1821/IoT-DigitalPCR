@@ -211,7 +211,8 @@ public class MainActivity extends AppCompatActivity {
                 bt.send("TC" + "_" + mTemp1.getText().toString()
                         + "_" + mTemp2.getText().toString() + "_" + mTemp3.getText().toString()
                         + "_" + mTime1.getText().toString() + "_" + mTime2.getText().toString()
-                        + "_" + mTime3.getText().toString() + "_" + mNcyc.getText().toString() + "_", true);
+                        + "_" + mTime3.getText().toString() + "_" + mNcyc.getText().toString()
+                        + "_" + mDataid.getText().toString() + "_", true);
             }
         });
 
@@ -220,7 +221,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 bt.send("FI" + "_" + mISO.getText().toString()
                         + "_" + mExpTime.getText().toString() + "_" + mShuTime.getText().toString()
-                        + "_" + mLivtime.getText().toString() + "_" + mFlu.getText().toString() + "_", true);
+                        + "_" + mLivtime.getText().toString() + "_" + mFlu.getText().toString()
+                        + "_" + mDataid.getText().toString() + "_", true);
             }
         });
 
@@ -230,9 +232,12 @@ public class MainActivity extends AppCompatActivity {
 
                 bt.send("AN" + "_" + mDetparm1.getText().toString()
                         + "_" + mDetparm2.getText().toString() + "_" + mMinrad.getText().toString()
-                        + "_" + mMaxrad.getText().toString() + "_" + mMindist.getText().toString() + "_", true);
+                        + "_" + mMaxrad.getText().toString() + "_" + mMindist.getText().toString()
+                        + "_" + mDataid.getText().toString() + "_", true);
             }
         });
+
+        //Data upload click
         mbtnSE.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

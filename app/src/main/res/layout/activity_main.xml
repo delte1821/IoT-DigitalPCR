@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_height="fill_parent"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,10 +30,10 @@
             android:layout_height="wrap_content"
             android:textStyle="bold|italic"
             android:background="#BF360C"
-            android:text="Sogang University  "
+            android:text="Developed by Ji Wook Choi 2021  "
             android:textAlignment="textEnd"
             android:textColor="#FFFFFF"
-            android:textSize="18dp"
+            android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -42,7 +41,7 @@
         <Button
             android:id="@+id/btnConnect"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="#673AB7"
             android:layout_marginTop="4dp"
             android:text="Bluetooth connection"
@@ -54,6 +53,26 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.098" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#33006064"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/Dataid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Client ID"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textSize="14dp" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView3"
@@ -96,6 +115,7 @@
                 android:inputType="number"
                 android:hint="Time 1"
                 android:textSize="14dp"
+                android:layout_marginEnd="4dp"
                 android:textAlignment="center" />
         </LinearLayout>
 
@@ -379,13 +399,13 @@
             android:textSize="16dp"
             android:layout_marginTop="6dp"
             android:textAlignment="center"
-            android:background="#66000000"
+            android:background="#11000000"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#33000000"
+            android:background="#11000000"
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/TexCon1"
@@ -453,7 +473,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#33000000"
+            android:background="#11000000"
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/TexCon4"
@@ -520,7 +540,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#33000000"
+            android:background="#11000000"
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/TexCon7"
@@ -589,18 +609,23 @@
             android:layout_height="wrap_content"
             android:background="#33006064"
             android:layout_marginTop="6dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
             <EditText
-                android:id="@+id/Dataid"
-                android:layout_width="200dp"
+                android:layout_marginTop="4dp"
+                android:id="@+id/Serverid"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="DATA ID"
-                android:textSize="14dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Server address"
                 android:inputType="number"
                 android:textAlignment="center"
-                android:layout_marginStart="4dp"
+                android:textSize="14dp"
                 />
+
             <Button
+                android:layout_marginTop="4dp"
                 android:id="@+id/btnSend"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -610,8 +635,10 @@
                 android:textColor="#FFFFFF"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
                 />
         </LinearLayout>
 
     </LinearLayout>
+
 </ScrollView>
