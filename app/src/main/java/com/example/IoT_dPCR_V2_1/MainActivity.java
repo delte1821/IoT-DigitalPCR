@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                     double longitude = location.getLongitude();
                     double latitude = location.getLatitude();
                     double altitude = location.getAltitude();
-                    bt.send("ID" + "_" + mDataid.getText().toString() + "_" + provider + "_" + longitude + "_: " + latitude + "_: " + altitude + "_" + mServerid.getText().toString() + "_", true);
+                    bt.send("ID" + "_" + mDataid.getText().toString() + "_" + provider + "_" + longitude + "_" + latitude + "_" + altitude + "_" + mServerid.getText().toString() + "_", true);
                 }
             }
         });
