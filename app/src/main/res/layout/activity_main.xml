@@ -68,7 +68,6 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:hint="Client ID"
-                android:inputType="number"
                 android:textAlignment="center"
                 android:textSize="14dp" />
 
@@ -612,25 +611,24 @@
             android:orientation="vertical">
 
             <EditText
-                android:layout_marginTop="4dp"
                 android:id="@+id/Serverid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:hint="Server address"
-                android:inputType="number"
                 android:textAlignment="center"
                 android:textSize="14dp"
                 />
 
             <Button
-                android:layout_marginTop="4dp"
                 android:id="@+id/btnSend"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:background="#006064"
                 android:text="Send data"
+                android:layout_marginTop="4dp"
                 android:textSize="14dp"
                 android:textColor="#FFFFFF"
                 android:layout_marginStart="4dp"

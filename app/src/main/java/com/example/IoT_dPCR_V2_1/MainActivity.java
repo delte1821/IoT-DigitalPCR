@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     //Send data to server
     EditText mDataid;
     Button mbtnSE;
+    EditText mServerid;
 
 
     Handler mBluetoothHandler;
@@ -204,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
         //Send data ID
         mDataid = findViewById(R.id.Dataid);
         mbtnSE = findViewById(R.id.btnSend);
+        mServerid = findViewById(R.id.Serverid);
 
         //TC button click
         mbtnTC.setOnClickListener(new View.OnClickListener() {
@@ -252,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                     double longitude = location.getLongitude();
                     double latitude = location.getLatitude();
                     double altitude = location.getAltitude();
-                    bt.send("ID" + "_" + mDataid.getText().toString() + "_" + provider + "_" + longitude + "_: " + latitude + "_: " + altitude + "_", true);
+                    bt.send("ID" + "_" + mDataid.getText().toString() + "_" + provider + "_" + longitude + "_: " + latitude + "_: " + altitude + "_" + mServerid.getText().toString() + "_", true);
                 }
             }
         });
